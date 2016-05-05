@@ -118,6 +118,7 @@
     <button id="searchButton" ng-click="searchFor()" type="button" value="Go">Go</button>
     <button id="urlButton" ng-click="getURLs()" type="button" value="Go">Get Links</button>
     <button id="topTweetsButton" ng-click="getTopTweets()" type="button" value="Go">Top Tweets</button>
+    <button id="getTweets" ng-click="getTweets()" type="button" value="Go">Get Tweets</button>
     <br>
 
     <p id="mood"></p>
@@ -127,7 +128,7 @@
 
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1">Mood Chart</a></li>
+            <li onclick="setInitialProperties()"><a href="#tabs-1">Mood Chart</a></li>
             <li><a href="#tabs-2">Links</a></li>
             <li><a href="#tabs-3">Tweets</a></li>
         </ul>

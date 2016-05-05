@@ -8,11 +8,8 @@ var transformProperty = getSupportedPropertyName(transforms);
 var xpos =400;
 
 
-function thingyClick(){
-    document.getElementById("clickme").click();
-}
-
 function setInitialProperties() {
+
     for (var i = 0; i < theThings.length; i++) {
         var theThing = theThings[i];
 
@@ -25,13 +22,13 @@ function setInitialProperties() {
 
         setTranslate3DTransform(theThing);
     }
-    setTimeout(kickOffTransition, 3000);
+    setTimeout(kickOffTransition, 1000);
 }
 setInitialProperties();
-setTimeout(thingyClick, 1000);
 
 
 function kickOffTransition() {
+    theThings = document.querySelectorAll(".thing");
     for (var i = 0; i < theThings.length; i++) {
         var theThing = theThings[i];
 
@@ -40,7 +37,6 @@ function kickOffTransition() {
         theThing.addEventListener("mozTransitionEnd", updatePosition, false);
         theThing.addEventListener("msTransitionEnd", updatePosition, false);
         theThing.addEventListener("oTransitionEnd", updatePosition, false);
-        theThing.addEventListener("click", updatePosition, false);
 
         setTranslate3DTransform(theThing);
         setTransitionDuration(theThing);
@@ -50,10 +46,10 @@ function kickOffTransition() {
 function updatePosition(e) {
     var theThing = e.currentTarget;
 
-    //if (e.propertyName.indexOf("transform") != -1) {
+    if (e.propertyName.indexOf("transform") != -1) {
         setTranslate3DTransform(theThing);
         setTransitionDuration(theThing);
-    //}
+    }
 }
 
 function getRandomXPosition() {
@@ -81,7 +77,7 @@ function setTranslate3DTransform(element) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            xpos=xpos+Number(xhr.responseText)*5;
+            xpos=Number(xpos)+Number(xhr.responseText)*5+Number(.1);
 
             console.log("xhr: ", xhr.responseText);
         }

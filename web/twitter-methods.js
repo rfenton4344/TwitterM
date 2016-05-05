@@ -4,26 +4,48 @@
 function TwitterController($scope, $http, $sce, $interval) {
 
 
+    $interval(function () {
 
-    //$interval(function(){
-    //
-    //
-    //    //$http.get('api/hello/mood/get/tweets').
-    //    //success(function (data, status, headers, config) {
-    //    //    console.log("tweets: ", data);
-    //    //
-    //    //    $scope.tweets=data;
-    //    //
-    //    //    document.getElementById("tweets").innerHTML=$scope.tweets;
-    //    //
-    //    //}).
-    //    //error(function (data, status, headers, config) {
-    //    //    console.log("error returning data");
-    //    //})
-    //
-    //    //$scope.getURLs();
-    //
-    //}, 5000);
+
+            return $http.get('api/hello/mood/get/tweets').
+            success(function (data, status, headers, config) {
+                console.log("tweets: ", data);
+
+                $scope.tweets = data;
+                return data;
+
+                // document.getElementById("tweets").innerHTML=$scope.tweets;
+
+            }).
+            error(function (data, status, headers, config) {
+                console.log("error returning data");
+            })
+
+            //$scope.getURLs();
+
+        }, 5000);
+
+
+
+    $scope.getTweets = function () {
+
+        return $http.get('api/hello/mood/get/tweets').
+        success(function (data, status, headers, config) {
+            console.log("tweets: ", data);
+
+            $scope.tweets = data;
+            return data;
+
+            // document.getElementById("tweets").innerHTML=$scope.tweets;
+
+        }).
+        error(function (data, status, headers, config) {
+            console.log("error returning data");
+        })
+
+    }
+
+
 
 
     $scope.searchFor = function () {
